@@ -1,16 +1,86 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asian Paints</title>
+<style>
+  #grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .grid-item {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+  }
+
+  #block_id,
+  #colour_id {
+    margin-right: 10px;
+  }
+
+  #change_button,
+  #reset_button {
+    margin-bottom: 10px;
+  }
+</style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+<div id="app">
+  <div id="grid-container">
+    <div id="1" class="grid-item">1</div>
+    <div id="2" class="grid-item">2</div>
+    <div id="3" class="grid-item">3</div>
+    <div id="4" class="grid-item">4</div>
+    <div id="5" class="grid-item">5</div>
+    <div id="6" class="grid-item">6</div>
+    <div id="7" class="grid-item">7</div>
+    <div id="8" class="grid-item">8</div>
+    <div id="9" class="grid-item">9</div>
+  </div>
+  <label for="block_id">Block ID:</label>
+  <input type="text" id="block_id">
+  <label for="colour_id">Color:</label>
+  <input type="color" id="colour_id">
+  <button id="change_button">Change Color</button>
+  <button id="reset_button">Reset</button>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const gridItems = document.querySelectorAll(".grid-item");
+    const blockIdInput = document.getElementById("block_id");
+    const colorInput = document.getElementById("colour_id");
+    const changeButton = document.getElementById("change_button");
+    const resetButton = document.getElementById("reset_button");
+
+    changeButton.addEventListener("click", () => {
+      const blockId = blockIdInput.value;
+      const color = colorInput.value;
+
+      gridItems.forEach(item => {
+        item.style.backgroundColor = "transparent";
+      });
+
+      const targetItem = document.getElementById(blockId);
+      if (targetItem) {
+        targetItem.style.backgroundColor = color;
+      } else {
+        alert("Block ID not found!");
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      gridItems.forEach(item => {
+        item.style.backgroundColor = "transparent";
+      });
+      blockIdInput.value = "";
+      colorInput.value = "#000000";
+    });
+  });
 </script>
-
 </body>
-
 </html>
